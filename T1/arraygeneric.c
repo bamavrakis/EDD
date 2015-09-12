@@ -58,7 +58,7 @@ void array_destroy(Array *array)
 
 	// free main elements
 	free(array->elements);
-  free(array):
+  free(array);
 }
 
 int array_size(Array *array)
@@ -83,7 +83,7 @@ void array_item_at(Array *array, int index, void *target)
   array_alloc_test(array);
 	assert(index >= 0 && index < array->size);
 	void *source = array_address(array, index);
-	memcpy(target, source, array->elementSize);
+	memcpy(target, source, array->elementsize);
 }
 
 void array_insert_at(Array *array, int index, void *target)

@@ -1,5 +1,5 @@
-#ifndef ARRAYGENERIC_H
-#define ARRAYGENERIC_H
+#ifndef ARRAY_H
+#define ARRAY_H
 
 typedef void (*freeFunction)(void *);
 typedef struct Array {

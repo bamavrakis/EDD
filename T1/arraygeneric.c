@@ -32,7 +32,7 @@ static void array_copy_item(Array *array, int sourceIndex, int destIndex)
 	memcpy(target, source, array->elementsize);
 }
 
-void *array_init(int elementsize, freeFunction function)
+Array *array_init(int elementsize, freeFunction function)
 {
 	assert(elementsize > 0);
   Array *array = malloc(sizeof(*array));

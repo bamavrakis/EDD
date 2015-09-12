@@ -51,13 +51,14 @@ void array_destroy(Array *array)
   array_alloc_test(array);
 	if(array->freef) {
 		int i;
-		for(i = 0; i < array_size(array); i++) {
+		for(i = 0; i < array->maxsize; i++) {
 			array->freef(array_address(array, i));
 		}
 	}
 
 	// free main elements
 	free(array->elements);
+  free(array):
 }
 
 int array_size(Array *array)

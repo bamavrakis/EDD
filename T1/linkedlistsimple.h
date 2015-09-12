@@ -24,6 +24,7 @@
 // mail if you want more details)
 
 // Defining an element type
+typedef void (*freeFunction)(void *);
 typedef struct ElementSimple
 {
     // what the element contains. This is where you need to modify if you want
@@ -39,6 +40,7 @@ typedef struct ElementSimple
 // Defining the general data structure
 typedef struct LinkedListSimple
 {
+    freeFunction freef;
     // Pointer towards the first element of the list
     ElementSimple *first;
     // Pointer towards the last element of the list
@@ -51,7 +53,7 @@ typedef struct LinkedListSimple
 }LinkedListSimple;
 
 // Memory management part of the implementation
-LinkedListSimple *list_init(int elementsize);
+LinkedListSimple *list_init(int elementsize, freeFunction function);
 void list_alloc_test(LinkedListSimple *list);
 void list_destroy(LinkedListSimple *linkedlist);
 

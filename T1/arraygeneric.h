@@ -1,45 +1,24 @@
-/******************************************************************************\
-|
-|   Author:     Chaumier Pierre-Victor <pvchaumier@uc.cl>
-|
-\******************************************************************************/
+#ifndef ARRAYGENERIC_H
+#define ARRAYGENERIC_H
 
-// Include Guards to avoid double declarations
-#ifndef array_H
-#define array_H
+typedef void (*freeFunction)(void *);
+typedef struct ArrayGeneric {
+	void *elements;
+	int elementsize;
+	int size;
+	int maxsize;
+	freeFunction freef;
+	//void (*freeFn)(void *);
+} ArrayGeneric;
 
-#include <stdio.h>
-#include <stdlib.h>
-
-// When the array will be initialized, it will be of size INITIAL_SIZE
-// Notice that it is empty for now
-// You can modify this value
-#define INITIAL_SIZE 10
-
-// typedef allows you to use Array instead of struct Array when defyning new
-// variables
-typedef struct Array
-{
-    // Number of element in the array
-    int size;
-    // How many elements the current array can contain
-    int capacity;
-    // What is in the array, in this case we have an array of int
-    // this is where you should modify the code if you want to
-    // change the type of the content
-    void *content;
-
-    int elementsize;
-}Array;
-
-Array *array_init();
 void array_alloc_test(Array *array);
-void array_double_size_if_full(Array *array);
-void array_destroy(Array *array);
+Array *array_init(int elementsize, freeFunction freeFn);
+void array_destroy(ArrayGeneric *array);
+int array_size(ArrayGeneric *array);
 
-void array_add(Array *array, int iValueToAdd);
-void array_del(Array *array, int iValueToDel);
-int array_get(Array *array, int iPosition);
-void array_print(Array *array);
+void array_add(ArrayGeneric *array, void *element);
+void array_item_at(ArrayGeneric *array, int index, void *target);
+void array_insert_at(ArrayGeneric *array, int index, void *target);
+void array_remove_at(ArrayGeneric *array, int index);
 
 #endif

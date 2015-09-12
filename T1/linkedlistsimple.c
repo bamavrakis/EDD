@@ -11,11 +11,12 @@ void list_alloc_test(LinkedListSimple *list){
     }
 }
 
-LinkedListSimple *list_init(int elementsize)
+LinkedListSimple *list_init(int elementsize,freeFunction function)
 {
     // Allocation of the different pointers.
-    LinkedListSimple *list = malloc(sizeof(*list));
 
+    LinkedListSimple *list = malloc(sizeof(*list));
+    list->freef = function;
 
     if (list == NULL)
     {
@@ -42,6 +43,10 @@ void list_destroy(LinkedListSimple *list)
     while (elementCurrent != NULL)
     {
         elementNext = elementCurrent->next;
+        if (list->freef)
+        {
+          list->freef(elementCurrent->value);
+        }
         free(elementCurrent->value);
         free(elementCurrent);
         elementCurrent = elementNext;
@@ -60,12 +65,11 @@ void list_addlast(LinkedListSimple *list, void *ValueToAdd)
     // We allocate memory for the new element that will be added.
     ElementSimple *element = malloc(sizeof(*element));
     element->value=malloc(list->elementsize);
-    memcpy(element->value, ValueToAdd, list->elementsize);
-
     if (element == NULL || element->value == NULL)
     {
         exit(EXIT_FAILURE);
     }
+    memcpy(element->value, ValueToAdd, list->elementsize);
 
     // the next element is null because we add at the end of the list.
     element->next = NULL;
@@ -96,12 +100,13 @@ void list_addbeg(LinkedListSimple *list, void *ValueToAdd)
     // We allocate memory for the new element that will be added.
     ElementSimple *element = malloc(sizeof(*element));
     element->value=malloc(list->elementsize);
-    memcpy(element->value, ValueToAdd, list->elementsize);
-
     if (element == NULL || element->value == NULL)
     {
         exit(EXIT_FAILURE);
     }
+    memcpy(element->value, ValueToAdd, list->elementsize);
+
+
 
     // the next element is null because we add at the end of the list.
     // element->next = NULL;
@@ -133,13 +138,17 @@ int list_delbeg(LinkedListSimple *list,void *puntero, bool delete)
 
     }
     ElementSimple *element=list->first;
-    puntero=element->value; 
-
+    memcpy(puntero, element->value, list->elementsize);
     if(delete)
     {
       if (list->size ==1)
       {
         list->last = NULL;
+      }
+      if(list->freef)
+      {
+        list->freef(element->value);
+        free(element->value);
       }
       list->first = element->next;
       free(element);

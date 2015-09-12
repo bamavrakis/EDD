@@ -1,4 +1,5 @@
+#include "arraygeneric.h"
 int main(int argc, char const *argv[]) {
-  /* code */
+  Array arreglou=array_new(sizeof(int));
   return 0;
 }

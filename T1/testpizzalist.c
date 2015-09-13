@@ -8,8 +8,8 @@
 void readCommand() {
   Array *hash;
   printf("huehue");
-  //Pizzalist *list = pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
-  //Queuepizza *queue = queuepizza_init(sizeof(int),NULL);//lo mismo
+  Pizzalist *list = NULL; //acá se pierde memoria
+  Queuepizza *queue = NULL;//lo mismo
   char cliente[2048];
   char pizza[2048];
   char command[4];

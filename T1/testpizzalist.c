@@ -4,7 +4,6 @@
 #include "pizzalist.h"
 #include "closedhashing.h"
 #include "queuepizza.h" /* Malloc duderino */
-#include "hash.h"
 
 
 typedef struct Pizza

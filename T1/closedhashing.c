@@ -17,7 +17,7 @@ void array_alloc_test(Array *array){
 
 unsigned long closed_addressing_hashing(Array *array, unsigned char *target)
 {
-  return hash(target % array->maxsize);
+  return (hash(target) % array->maxsize);
 }
 
 static void array_grow(Array *array)

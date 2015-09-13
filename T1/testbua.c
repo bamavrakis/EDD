@@ -9,7 +9,7 @@ int main(int argc, char const *argv[]) {
   int cantidad;
   int i;
   Pizzalist *list = pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
-  Queuepizza *queue = NULL;//lo mismo
+  Queuepizza *queue = pizzalist_init(sizeof(int),NULL);//lo mismo
   char cliente[2048];
   char pizza[2048];
   scanf("%s", cliente);

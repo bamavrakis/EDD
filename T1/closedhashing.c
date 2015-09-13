@@ -50,7 +50,7 @@ Array *array_init(int elementsais, freeFunction function)
 	array->elementsize = elementsais;
 	array->size = 0;
 	array->maxsize = 100;
-	array->elements = calloc(array->maxsize,array->elementsize);
+	array->elements = calloc(array->maxsize,aelemenetsiz);
 	array->freef = function;
   llenar(array);
 	//array_grow(array);
@@ -105,7 +105,7 @@ void array_add(Array *array, void *element)
 void array_item_at(Array *array, int index, void *target)
 {
   array_alloc_test(array);
-	assert(index >= 0 && index < array->size);
+	assert(index >= 0 && index < array->maxsize);
 	void *source = array_address(array, index);
 	memcpy(target, source, array->elementsize);
 }

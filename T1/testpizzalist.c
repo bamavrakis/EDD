@@ -65,8 +65,8 @@ int main(int argc, char const *argv[]) {
         }
         else if(!strcmp(command,"END"))
         {
-          scanf("%s", name);
-          scanf("%d", &gravity);
+          //scanf("%s", name);
+          //scanf("%d", &gravity);
         }
 
         else

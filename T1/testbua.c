@@ -20,12 +20,12 @@ int main(int argc, char const *argv[]) {
     printf("NOOOO");
     array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
     // en vez de 1  closed_addressing_hashing(hash, (unsigned char *)&(pizza[0]))
-    pizzalist_find(list,queue,&(pizza[0]));
-    //if(!(pizzalist_find(list,queue,&(pizza[0]))))
-    //{
+    //pizzalist_find(list,queue,&(pizza[0]));
+    if(!(pizzalist_find(list,queue,&(pizza[0]))))
+    {
       //queue=queuepizza_init(sizeof(int),NULL);
       //pizzalist_addlast(list,queue,&(pizza[0]));
-    //}
+    }
     //queuepizza_enqueue(queue,0,&(cliente[0]));
   }
   return 0;

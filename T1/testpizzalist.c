@@ -22,6 +22,7 @@ typedef struct Pizza
 int main(int argc, char const *argv[]) {
   void readCommand() {
     Array *hash;
+    printf("huehue");
     Pizzalist *list=pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
     Queuepizza *queue= queuepizza_init(sizeof(int),NULL);//lo mismo
     char cliente[2048];

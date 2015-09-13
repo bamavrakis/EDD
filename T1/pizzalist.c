@@ -243,6 +243,6 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key)
        //}
        //temp = temp->next;
 
-    }
+    //}
     return 0;
 }

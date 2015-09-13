@@ -18,7 +18,7 @@ int main(int argc, char const *argv[]) {
   for(i=0;i<cantidad;i++)
   {
     printf("NOOOO");
-    array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
+    array_item_at(hash, closed_addressing_hashing(hash, 1),list);
     //if(!(pizzalist_find(list,queue,&(pizza[0]))))
     //{
       //queue=queuepizza_init(sizeof(int),NULL);

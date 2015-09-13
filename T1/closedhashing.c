@@ -2,7 +2,8 @@
 #include <string.h>
 #include <assert.h>
 
-#include "arraygeneric.h"
+#include "closedhashing.h"
+#include "hash.h"
 
 void array_alloc_test(Array *array){
     // Test if the array is allocated in memory, if not returns with error
@@ -14,8 +15,9 @@ void array_alloc_test(Array *array){
 static void array_grow(Array *array)
 {
   array_alloc_test(array);
-	array->maxsize *= 2;
-	array->elements = realloc(array->elements, array->elementsize * array->maxsize);
+
+  array->maxsize *= 2;
+  array->elements = realloc(array->elements,array->maxsize*array->elementsize);
 	assert(array->elements);
 }
 

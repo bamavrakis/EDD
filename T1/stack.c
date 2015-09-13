@@ -11,11 +11,11 @@ void stack_alloc_test(StackSimple *stack){
     }
 }
 
-StackSimple *stack_init(int elementsize)
+StackSimple *stack_init(int elementsize,freeFunction function)
 {
   StackSimple *stack = malloc(sizeof(*stack));
   stack_alloc_test(stack);
-  stack->list = list_init(elementsize);
+  stack->list = list_init(elementsize,function);
   return stack;
 }
 

@@ -29,7 +29,9 @@ int main(int argc, char const *argv[]) {
     char command[4];
     int cantidad;
     int i;
+    printf("que sucede");
     hash = array_init(sizeof(Pizzalist),pizzalist_destroy);
+    printf("hermanito");
     while (1)
     {
         scanf("%s", command);

@@ -105,7 +105,7 @@ void array_add(Array *array, void *element)
 void array_item_at(Array *array, int index, void *target)
 {
   array_alloc_test(array);
-	//assert(index >= 0 && index < array->maxsize);
+	assert(index >= 0 && index < array->maxsize);
 	//void *source = array_address(array, index);
 	//memcpy(target, source, array->elementsize);
 }

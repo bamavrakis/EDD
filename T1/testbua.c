@@ -6,6 +6,7 @@
 #include "queuepizza.h" /* Malloc duderino */
 int main(int argc, char const *argv[]) {
   Array *hash = array_init(sizeof(Pizzalist),pizzalist_destroy);
+  int cantidad;
   scanf("%d", &cantidad);
   printf("%d",cantidad);
 

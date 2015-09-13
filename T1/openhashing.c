@@ -21,13 +21,15 @@ static void array_grow(Array *array) //me falta hacer el hash de nuevo.
 {
   array_alloc_test(array);
   int i;
+  int oldsize = array->maxsize;
   array->maxsize *= 2;
   void *oldelements = array->elements;
+
 
   array->elements = calloc(array->maxsize,array->elementsize);
   assert(array->elements);
 
-  for(i = 0; i < array->maxsize; i++) {
+  for(i = 0; i < array->oldsize; i++) {
     addtemp=(char *)oldelements + array->elementsize * i;
     if (addtemp != NULL)
     {

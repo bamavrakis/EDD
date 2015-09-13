@@ -62,7 +62,7 @@ void pizzalist_destroy(void *pizzalist)
 
 void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *key)
 {
-    list_alloc_test(list);
+    pizzalist_alloc_test(list);
 
 
     // We allocate memory for the new element that will be added.
@@ -100,7 +100,7 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *key)
 
 void pizzalist_addbeg(Pizzalist *list, void *ValueToAdd, char *key)
 {
-    list_alloc_test(list);
+    pizzalist_alloc_test(list);
 
     // We allocate memory for the new element that will be added.
     Pizzanodo *element = malloc(sizeof(*element));
@@ -138,7 +138,7 @@ void pizzalist_addbeg(Pizzalist *list, void *ValueToAdd, char *key)
 
 int pizzalist_delbeg(Pizzalist *list,void *puntero, bool delete)
 {
-    list_alloc_test(list);
+    pizzalist_alloc_test(list);
     if (list->size == 0)
     {
       return -1;
@@ -176,7 +176,7 @@ int pizzalist_delbeg(Pizzalist *list,void *puntero, bool delete)
 // NO CREO QUE SEA NECESARIO PERO IGUAL.
 int pizzalist_get(Pizzalist *list, void *puntero, int Position)
 {
-    list_alloc_test(list);
+    pizzalist_alloc_test(list);
 
     Pizzanodo *element;
 
@@ -206,7 +206,7 @@ int pizzalist_get(Pizzalist *list, void *puntero, int Position)
 void pizzalist_print(Pizzalist *list)
 {
     // We will go through the list and print each of the element.s
-    list_alloc_test(list);
+    pizzalist_alloc_test(list);
 
     Pizzanodo *element;
 

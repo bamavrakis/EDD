@@ -1,4 +1,4 @@
-#include "linkedlistsimple.h"
+#include "pizzalist.h"
 #include <stdbool.h>
 #include <string.h>
 /* ---------------- Memory manipulation for data structure ---------------- */

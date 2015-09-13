@@ -50,7 +50,7 @@ Array *array_init(int elementsais, freeFunction function)
 	array->elementsize = elementsais;
 	array->size = 0;
 	array->maxsize = 100;
-	array->elements = calloc(array->maxsize,aelemenetsiz);
+	array->elements = calloc(array->maxsize,elementsais);
 	array->freef = function;
   llenar(array);
 	//array_grow(array);

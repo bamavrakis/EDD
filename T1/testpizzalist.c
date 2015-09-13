@@ -5,24 +5,11 @@
 #include "closedhashing.h"
 #include "queuepizza.h" /* Malloc duderino */
 
-
-typedef struct Pizza
-{
-    // Pointer towards the first element of the list
-
-    // Pointer towards the last element of the list
-    char *tipo;
-    char *cliente;
-    // Size of the list, this is used to not have to go through the list
-    // each time we want to know the size of the list.
-    // This is used in the list_get function.
-
-}Pizza;
 void readCommand() {
   Array *hash;
   printf("huehue");
-  Pizzalist *list=pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
-  Queuepizza *queue= queuepizza_init(sizeof(int),NULL);//lo mismo
+  //Pizzalist *list = pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
+  //Queuepizza *queue = queuepizza_init(sizeof(int),NULL);//lo mismo
   char cliente[2048];
   char pizza[2048];
   char command[4];

@@ -24,7 +24,7 @@ int main(int argc, char const *argv[]) {
     if(!(pizzalist_find(list,queue,&(pizza[0]))))
     {
       queue=queuepizza_init(sizeof(int),NULL);
-      pizzalist_addlast(list,queue,&(pizza[0]));
+      pizzalist_addlast(list,queue,(char *)&(pizza[0]));
     }
     //queuepizza_enqueue(queue,0,&(cliente[0]));
   }

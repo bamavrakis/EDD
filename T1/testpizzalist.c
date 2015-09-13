@@ -25,7 +25,6 @@ void readCommand() {
 
         scanf("%s", cliente);
         scanf("%d", &cantidad);
-        printf("%d",cantidad);
         scanf("%s", pizza);
         for(i=0;i<*cantidad;i++)
         {

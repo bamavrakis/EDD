@@ -59,7 +59,7 @@ void pizzalist_destroy(Pizzalist *list)
 
 /* ---------------- Manipulation of the data structure ---------------- */
 
-void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *key, int keysize)
+void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *key)
 {
     list_alloc_test(list);
 
@@ -96,7 +96,7 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *key, int keysize
     list->size++;
 }
 
-void pizzalist_addbeg(Pizzalist *list, void *ValueToAdd, char *key, int keysize)
+void pizzalist_addbeg(Pizzalist *list, void *ValueToAdd, char *key)
 {
     list_alloc_test(list);
 
@@ -227,7 +227,7 @@ void pizzalist_print(Pizzalist *list)
     printf("}\n");
 }
 
-int pizzalist_find(Pizzalist *list, void *puntero, char *key, int keysize)
+int pizzalist_find(Pizzalist *list, void *puntero, char *key)
 {
 
     pizzalist_alloc_test(list);

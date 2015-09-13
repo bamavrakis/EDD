@@ -26,7 +26,7 @@ void queuepizza_destroy(Queuepizza *queue)
   free(queue);
 }
 
-void queuepizza_enqueue(Queuepizza *queue, void *ValueToAdd, char *cliente, int clientesize)
+void queuepizza_enqueue(Queuepizza *queue, void *ValueToAdd, char *cliente)
 {
   queuepizza_alloc_test(queue);
   pizzalist_addlast(queue->list,ValueToAdd);

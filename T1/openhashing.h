@@ -21,5 +21,7 @@ void array_item_at(Array *array, int index, void *target);
 void array_insert_at(Array *array, int index, void *target);
 void array_remove_at(Array *array, int index);
 void array_add_at(Array *array, void *element,int index);
+unsigned long closed_addressing(Array *array, unsigned char *target);
+
 
 #endif

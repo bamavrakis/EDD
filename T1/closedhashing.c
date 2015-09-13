@@ -4,6 +4,8 @@
 
 #include "closedhashing.h"
 #include "hash.h"
+#include "pizzalist.h"
+#include "queuepizza.h"
 
 void array_alloc_test(Array *array){
     // Test if the array is allocated in memory, if not returns with error
@@ -12,40 +14,19 @@ void array_alloc_test(Array *array){
         exit(EXIT_FAILURE);
     }
 }
-static void array_grow(Array *array) //me falta hacer el hash de nuevo.
+
+unsigned long closed_addressing_hashing(Array *array, unsigned char *target)
+{
+  return hash(target % array->maxsize);
+}
+
+static void array_grow(Array *array)
 {
   array_alloc_test(array);
-  int i;
+
   array->maxsize *= 2;
-  void *oldelements = array->elements;
-
-  array->elements = calloc(array->maxsize,array->elementsize);
-  assert(array->elements);
-
-  for(i = 0; i < array->maxsize; i++) {
-    addtemp=(char *)oldelements + array->elementsize * i;
-    if (addtemp != NULL)
-    {
-      source = (char *)oldelements + array->elementsize * i
-      target = array_address(array, i); //hash
-      memcpy(target, source, array->elementsize);
-    }
-    if (array->freef)
-    {
-      array->freef((char *)oldelements + array->elementsize * i);
-    }
-
-  }
-	}
-
-	// free main elements
-	free(oldelements);
-
-
-
-
-
-
+  array->elements = realloc(array->elements,array->maxsize*array->elementsize);
+	assert(array->elements);
 }
 
 static void *array_address(Array *array, int index)
@@ -68,11 +49,10 @@ Array *array_init(int elementsize, freeFunction function)
   array_alloc_test(array);
 	array->elementsize = elementsize;
 	array->size = 0;
-	array->maxsize = 2;
+	array->maxsize = 100;
+	array->elements = NULL;
 	array->freef = function;
-  array->elements = calloc(array->maxsize,array->elementsize);
-
-  assert(array->elements);
+  llenar(array);
 	//array_grow(array);
   return array;
 }
@@ -102,13 +82,26 @@ void array_add(Array *array, void *element)
 {
   array_alloc_test(array);
 	if (array->maxsize == array->size) {
-		array_grow(array);
+    exit(1);
+    return;
+		//array_grow(array);
 	}
 
 	void *target = array_address(array, array->size++);
 	memcpy(target, element, array->elementsize);
 }
+void llenar(Array *array)
+{
+  array_alloc_test(array);
+  int i;
+  Pizzalist *lista;
 
+  for(i=0;i<array->maxsize;i++)
+  {
+    lista=pizzalist_init(sizeof(Queuepizza),queuepizza_destroy());
+    array_add_at(array,lista,i);
+  }
+}
 void array_item_at(Array *array, int index, void *target)
 {
   array_alloc_test(array);
@@ -117,7 +110,7 @@ void array_item_at(Array *array, int index, void *target)
 	memcpy(target, source, array->elementsize);
 }
 
-void array_insert_at(Array *array, int index, void *target)
+void array_insert_at(Array *array, int index, void *target) //si está lleno falla
 {
   array_alloc_test(array);
 	assert(index >= 0 && index <= array->size);
@@ -160,7 +153,9 @@ void array_add_at(Array *array, void *element,int index)
 {
   array_alloc_test(array);
   if (array->maxsize == array->size) {
-    array_grow(array);
+    exit(1);
+    return;
+    //array_grow(array);
   }
   assert(index >= 0 && index < array->maxsize);
   void *posicion = array_address(array,index);

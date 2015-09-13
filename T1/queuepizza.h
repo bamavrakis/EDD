@@ -41,7 +41,7 @@ void queuepizza_alloc_test(Queuepizza *queue);
 void queuepizza_destroy(Queuepizza *queue);
 
 // Implementation of the basic operations
-void queuepizza_enqueue(Queuepizza *queue, void *ValueToAdd, char* cliente, int clientesize);
+void queuepizza_enqueue(Queuepizza *queue, void *ValueToAdd, char* cliente);
 void queuepizza_dequeue(Queuepizza *queue, void *puntero, bool delete);
 bool queuepizza_is_empty(Queuepizza *queue);
 

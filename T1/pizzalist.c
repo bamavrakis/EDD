@@ -241,12 +241,12 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key)
     while(temp->next!=NULL)
     {
 
-      // if (strcmp(temp->key,key))
-       //{
-         //puntero = temp->value;
-         //return 1;
-       //}
-       //temp = temp->next;
+       if (strcmp(temp->key,key))
+       {
+         puntero = temp->value;
+         return 1;
+       }
+       temp = temp->next;
 
     }
     return 0;

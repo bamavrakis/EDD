@@ -58,7 +58,7 @@ typedef struct Pizzalist
 // Memory management part of the implementation
 Pizzalist *pizzalist_init(int elementsize, freeFunction function);
 void pizzalist_alloc_test(Pizzalist *list);
-void pizzalist_destroy(Pizzalist *linkedlist);
+void pizzalist_destroy(void * pizzalist);
 
 // Implementation of the basic operations
 //void pizzalist_addbeg(Pizzalist *linkedlist, void *ValueToAdd, char *key, int keysize);

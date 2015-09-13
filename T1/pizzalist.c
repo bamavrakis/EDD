@@ -33,8 +33,9 @@ Pizzalist *pizzalist_init(int elementsize,freeFunction function)
     return list;
 }
 }
-void pizzalist_destroy(Pizzalist *list)
+void pizzalist_destroy(void *pizzalist)
 {
+    Pizzalist *list = (Pizzalist *)pizzalist;
     list_alloc_test(list);
 
     Pizzanodo *elementCurrent, *elementNext;

@@ -19,8 +19,10 @@ Queuepizza *queuepizza_init(int elementsize,freeFunction function)
   return queue;
 }
 
-void queuepizza_destroy(Queuepizza *queue)
+void queuepizza_destroy(void *queuepizza)
 {
+
+  Queuepizza *queue = (Queuepizza *)queuepizza;
   queuepizza_alloc_test(queue);
   pizzalist_destroy(queue->list);
   free(queue);

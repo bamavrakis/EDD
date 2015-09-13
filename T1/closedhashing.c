@@ -42,21 +42,32 @@ static void array_copy_item(Array *array, int sourceIndex, int destIndex)
 	memcpy(target, source, array->elementsize);
 }
 
-Array *array_init(int elementsize, freeFunction function)
+Array *array_init(int elementsais, freeFunction function)
 {
 	assert(elementsize > 0);
   Array *array = calloc(1,sizeof(*array));
   array_alloc_test(array);
-	array->elementsize = elementsize;
+	array->elementsize = elementsais;
 	array->size = 0;
 	array->maxsize = 100;
-	array->elements = NULL;
+	array->elements = calloc(array->maxsize,array->elementsize);
 	array->freef = function;
   llenar(array);
 	//array_grow(array);
   return array;
 }
+void llenar(Array *array)
+{
+  array_alloc_test(array);
+  int i;
+  Pizzalist *lista;
 
+  for(i=0;i<array->maxsize;i++)
+  {
+    lista=pizzalist_init(sizeof(Queuepizza),queuepizza_destroy);
+    array_add_at(array,lista,i);
+  }
+}
 void array_destroy(Array *array)
 {
   array_alloc_test(array);
@@ -90,18 +101,7 @@ void array_add(Array *array, void *element)
 	void *target = array_address(array, array->size++);
 	memcpy(target, element, array->elementsize);
 }
-void llenar(Array *array)
-{
-  array_alloc_test(array);
-  int i;
-  Pizzalist *lista;
 
-  for(i=0;i<array->maxsize;i++)
-  {
-    lista=pizzalist_init(sizeof(Queuepizza),queuepizza_destroy);
-    array_add_at(array,lista,i);
-  }
-}
 void array_item_at(Array *array, int index, void *target)
 {
   array_alloc_test(array);

@@ -98,7 +98,7 @@ void llenar(Array *array)
 
   for(i=0;i<array->maxsize;i++)
   {
-    lista=pizzalist_init(sizeof(Queuepizza),queuepizza_destroy());
+    lista=pizzalist_init(sizeof(Queuepizza),queuepizza_destroy);
     array_add_at(array,lista,i);
   }
 }

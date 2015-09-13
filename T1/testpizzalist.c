@@ -22,14 +22,15 @@ typedef struct Pizza
 
 int main(int argc, char const *argv[]) {
   void readCommand() {
-    Array hash;
-    Pizzalist list;
-    Queuepizza queue;
+    Array *hash;
+    Pizzalist *list;
+    Queuepizza *queue;
     char cliente[2048];
     char pizza[2048];
+    char command[4];
     int cantidad;
     int i;
-    hash = array_init(sizeof(Pizzalist),pizzalist_destroy());
+    hash = array_init(sizeof(Pizzalist),pizzalist_destroy);
     while (1)
     {
         scanf("%s", command);
@@ -43,10 +44,10 @@ int main(int argc, char const *argv[]) {
           scanf("%s", pizza);
           for(i=0;i<cantidad;i++)
           {
-            array_item_at(Array hash, closed_addressing_hashing(hash, &(pizza[0])), list);
-            if(!pizzalist_find(list,queue,&(pizza[0])))
+            array_item_at(hash, closed_addressing_hashing(hash, &(pizza[0])),list);
+            if(!(pizzalist_find(list,queue,&(pizza[0]))))
             {
-              queue=queuepizza_init();
+              queue=queuepizza_init(sizeof(int),NULL);
               pizzalist_addlast(list,queue,&(pizza[0]));
             }
             queuepizza_enqueue(queue,0,&(cliente[0]));

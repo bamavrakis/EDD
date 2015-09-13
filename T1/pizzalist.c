@@ -80,14 +80,14 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *key)
     element->next = NULL;
 
     // If the list was empty
-    if (list->size == 0)
-    {
+    //if (list->size == 0)
+    //{
         // Be careful we need to free the first element because it was
         // initiated.
 
-        list->first = element;
+    //    list->first = element;
 
-    }
+    //}
     // If the list already contains at least one other element.
     //else
     //{

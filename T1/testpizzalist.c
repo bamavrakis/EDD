@@ -27,7 +27,7 @@ int main(int argc, char const *argv[]) {
     else if(!strcmp(command,"UPD"))
     {
       scanf("%s", name);
-      scanf("%s", &gravity);
+      scanf("%d", &gravity);
     }
     else if(!strcmp(command,"DIE"))
     {

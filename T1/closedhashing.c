@@ -12,13 +12,40 @@ void array_alloc_test(Array *array){
         exit(EXIT_FAILURE);
     }
 }
-static void array_grow(Array *array)
+static void array_grow(Array *array) //me falta hacer el hash de nuevo.
 {
   array_alloc_test(array);
-
+  int i;
   array->maxsize *= 2;
-  array->elements = realloc(array->elements,array->maxsize*array->elementsize);
-	assert(array->elements);
+  void *oldelements = array->elements;
+
+  array->elements = calloc(array->maxsize,array->elementsize);
+  assert(array->elements);
+
+  for(i = 0; i < array->maxsize; i++) {
+    addtemp=(char *)oldelements + array->elementsize * i;
+    if (addtemp != NULL)
+    {
+      source = (char *)oldelements + array->elementsize * i
+      target = array_address(array, i); //hash
+      memcpy(target, source, array->elementsize);
+    }
+    if (array->freef)
+    {
+      array->freef((char *)oldelements + array->elementsize * i);
+    }
+
+  }
+	}
+
+	// free main elements
+	free(oldelements);
+
+
+
+
+
+
 }
 
 static void *array_address(Array *array, int index)
@@ -42,9 +69,11 @@ Array *array_init(int elementsize, freeFunction function)
 	array->elementsize = elementsize;
 	array->size = 0;
 	array->maxsize = 2;
-	array->elements = NULL;
 	array->freef = function;
-	array_grow(array);
+  array->elements = calloc(array->maxsize,array->elementsize);
+
+  assert(array->elements);
+	//array_grow(array);
   return array;
 }
 

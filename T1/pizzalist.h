@@ -32,7 +32,7 @@ typedef struct Pizzanodo
     void *value;
 
     char *key;
-    int keysize;
+    //int keysize;
     // Pointer toward the next element in the list
     // You need to use struct Element and not only Element here because
     // it is inside the definition of the struct
@@ -61,15 +61,18 @@ void pizzalist_alloc_test(Pizzalist *list);
 void pizzalist_destroy(Pizzalist *linkedlist);
 
 // Implementation of the basic operations
-void pizzalist_addbeg(Pizzalist *linkedlist, void *ValueToAdd, char *key, int keysize);
-void pizzalist_addlast(Pizzalist *linkedlist, void *ValueToAdd,char *key, int keysize);
+//void pizzalist_addbeg(Pizzalist *linkedlist, void *ValueToAdd, char *key, int keysize);
+//void pizzalist_addlast(Pizzalist *linkedlist, void *ValueToAdd,char *key, int keysize);
+void pizzalist_addbeg(Pizzalist *linkedlist, void *ValueToAdd, char *key);
+void pizzalist_addlast(Pizzalist *linkedlist, void *ValueToAdd,char *key);
 int pizzalist_delbeg(Pizzalist *linkedlist, void *puntero, bool delete);
 // You will get a -1 if you want to reach a position not in the list. Thus
 // this implies you can only use natural integer with this implementation.
 int pizzalist_get(Pizzalist *linkedlist, void *puntero, int posicion);
-int pizzalist_find(Pizzalist *linkedList,void *puntero,char *key, int keysize);
+//int pizzalist_find(Pizzalist *linkedList,void *puntero,char *key, int keysize);
+int pizzalist_find(Pizzalist *linkedList,void *puntero,char *key);
 void pizzalist_print(Pizzalist *linkedlist);
 void freekey(Pizzanodo *nodo);
-int keycomp(char *key1, char *key2, int keysize1, int keysize2);
+//int keycomp(char *key1, char *key2, int keysize1, int keysize2);
 
 #endif

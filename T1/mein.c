@@ -5,6 +5,11 @@
 #include "closedhashing.h"
 #include "queuepizza.h" /* Malloc duderino */
 
+typedef struct Pizza
+{
+  char* tipo;
+  char* cliente;
+}Pizza
 typedef struct Persona
 {
   char* name;

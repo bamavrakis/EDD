@@ -32,13 +32,6 @@ Pizzalist *pizzalist_init(int elementsize,freeFunction function)
 
     return list;
 }
-void freekey(Pizzanodo *nodo)
-{
-  int i;
-  for(int i=0;i<nodo->keysize;i++)
-  {
-    free(nodo->key+i);
-  }
 }
 void pizzalist_destroy(Pizzalist *list)
 {
@@ -55,7 +48,7 @@ void pizzalist_destroy(Pizzalist *list)
           list->freef(elementCurrent->value);
         }
         free(elementCurrent->value);
-        freekey(elementCurrent);
+        free(elementCurrent->key);
         free(elementCurrent);
         elementCurrent = elementNext;
     }
@@ -163,7 +156,7 @@ int pizzalist_delbeg(Pizzalist *list,void *puntero, bool delete)
         free(element->value);
       }
       list->first = element->next;
-      freekey(element);
+      free(element->key);
       free(element->value);
       free(element);
       list->size--;
@@ -233,25 +226,7 @@ void pizzalist_print(Pizzalist *list)
     }
     printf("}\n");
 }
-int keycomp(char *key1, char *key2, int keysize1, int keysize2)
-{
-  int i;
-  for(i<keysize1)
-  {
-    if (*key1 + i != *key2 + i)
-    {
-      return 0;
-    }
-  }
-  for(i<keysize2)
-  {
-    if (*key2 + i != *key1 + i)
-    {
-      return 0;
-    }
-  }
-  return 1;
-}
+
 int pizzalist_find(Pizzalist *list, void *puntero, char *key, int keysize)
 {
 
@@ -259,7 +234,7 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key, int keysize)
     Pizzanodo *temp = list->first;
     while(temp->next!=NULL)
     {
-       if (keycomp(key,temp->key,keysize,temp->keysize))
+       if (strcmp(temp->key,key))
        {
          puntero = temp->value;
          return 1;

@@ -9,20 +9,21 @@ int main(int argc, char const *argv[]) {
     char command[4];
     int gravity;
     char name[2048];
-    scanf("%s", command);
-    while 1
+    while (1)
     {
-          if (!strcmp(command,"NEW"))/* Es lo mismo que strcmp(command,"NEW") == 0 */
-          /* strcmp resta strings, si son iguales, la resta da 0 (TRUE) */
-          {
+        scanf("%s", command);
 
-          ("%s", name);
-          scanf("%d", &gravity);
-          //Persona* person = malloc(sizeof(Persona));
-          //person->name = malloc(sizeof(char)*(strlen(name)));
-          //erson->gravity = gravity;
-          //add(person);
-        }
+        if (!strcmp(command,"NEW"))/* Es lo mismo que strcmp(command,"NEW") == 0 */
+        /* strcmp resta strings, si son iguales, la resta da 0 (TRUE) */
+        {
+
+        ("%s", name);
+        scanf("%d", &gravity);
+        //Persona* person = malloc(sizeof(Persona));
+        //person->name = malloc(sizeof(char)*(strlen(name)));
+        //erson->gravity = gravity;
+        //add(person);
+      }
         else if(!strcmp(command,"NXT"))
         {
 
@@ -42,6 +43,7 @@ int main(int argc, char const *argv[]) {
         }
         else
         {
+          break;
           exit(1);
         }
     }

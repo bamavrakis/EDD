@@ -66,8 +66,8 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *key)
 
 
     // We allocate memory for the new element that will be added.
-    Pizzanodo *element = malloc(sizeof(*element));
-    element->value=malloc(list->elementsize);
+    Pizzanodo *element = calloc(1,sizeof(*element));
+    element->value=calloc(1,list->elementsize);
     if (element == NULL || element->value == NULL)
     {
         exit(EXIT_FAILURE);
@@ -77,25 +77,25 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *key)
 
 
     // the next element is null because we add at the end of the list.
-    element->next = NULL;
+    //element->next = NULL;
 
     // If the list was empty
-    if (list->size == 0)
-    {
+//    if (list->size == 0)
+  //  {
         // Be careful we need to free the first element because it was
         // initiated.
 
-        list->first = element;
+    //    list->first = element;
 
-    }
+    //}
     // If the list already contains at least one other element.
-    else
-    {
-        list->last->next = element;
-    }
+    //else
+    //{
+    //    list->last->next = element;
+    //}
 
-    list->last = element;
-    list->size++;
+    //list->last = element;
+    //list->size++;
 }
 
 void pizzalist_addbeg(Pizzalist *list, void *ValueToAdd, char *key)

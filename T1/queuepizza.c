@@ -41,11 +41,11 @@ void queuepizza_dequeue(Queuepizza *queue, void *puntero, bool delete)
 }
 bool queuepizza_is_empty(Queuepizza *queue)
 {
-  if(**(queue->list->size) == 0)
+  if(queue->list->size) == 0)
   {
-    return true;
+    return 1;
   }
-  return false;
+  return 0;
 }
 
 void queuepizza_print(Queuepizza *queue)

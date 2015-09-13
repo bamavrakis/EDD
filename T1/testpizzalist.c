@@ -10,37 +10,42 @@ int main(int argc, char const *argv[]) {
     int gravity;
     char name[2048];
     scanf("%s", command);
-    if (!strcmp(command,"NEW"))/* Es lo mismo que strcmp(command,"NEW") == 0 */
-    /* strcmp resta strings, si son iguales, la resta da 0 (TRUE) */
+    while 1
     {
-      scanf("%s", name);
-      scanf("%d", &gravity);
-      //Persona* person = malloc(sizeof(Persona));
-      //person->name = malloc(sizeof(char)*(strlen(name)));
-      //erson->gravity = gravity;
-      //add(person);
-    }
-    else if(!strcmp(command,"NXT"))
-    {
+          if (!strcmp(command,"NEW"))/* Es lo mismo que strcmp(command,"NEW") == 0 */
+          /* strcmp resta strings, si son iguales, la resta da 0 (TRUE) */
+          {
 
-    }
-    else if(!strcmp(command,"UPD"))
-    {
-      scanf("%s", name);
-      scanf("%d", &gravity);
-    }
-    else if(!strcmp(command,"DIE"))
-    {
+          ("%s", name);
+          scanf("%d", &gravity);
+          //Persona* person = malloc(sizeof(Persona));
+          //person->name = malloc(sizeof(char)*(strlen(name)));
+          //erson->gravity = gravity;
+          //add(person);
+        }
+        else if(!strcmp(command,"NXT"))
+        {
 
-    }
-    else if(!strcmp(command,"END"))
-    {
+        }
+        else if(!strcmp(command,"UPD"))
+        {
+          scanf("%s", name);
+          scanf("%d", &gravity);
+        }
+        else if(!strcmp(command,"DIE"))
+        {
 
+        }
+        else if(!strcmp(command,"END"))
+        {
+
+        }
+        else
+        {
+          exit(1);
+        }
     }
-    else
-    {
-      exit(1);
-    }
+
   }
   readCommand();
   return 0;

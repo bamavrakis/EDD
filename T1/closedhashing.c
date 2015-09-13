@@ -44,7 +44,7 @@ static void array_copy_item(Array *array, int sourceIndex, int destIndex)
 
 Array *array_init(int elementsais, freeFunction function)
 {
-	assert(elementsize > 0);
+	assert(elementsais > 0);
   Array *array = calloc(1,sizeof(*array));
   array_alloc_test(array);
 	array->elementsize = elementsais;

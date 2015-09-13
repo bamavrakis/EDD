@@ -18,67 +18,67 @@ typedef struct Pizza
     // This is used in the list_get function.
 
 }Pizza;
+void readCommand() {
+  Array *hash;
+  printf("huehue");
+  Pizzalist *list=pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
+  Queuepizza *queue= queuepizza_init(sizeof(int),NULL);//lo mismo
+  char cliente[2048];
+  char pizza[2048];
+  char command[4];
+  int cantidad;
+  int i;
+  printf("que sucede");
+  hash = array_init(sizeof(Pizzalist),pizzalist_destroy);
+  printf("hermanito");
+  while (1)
+  {
+      scanf("%s", command);
 
-int main(int argc, char const *argv[]) {
-  void readCommand() {
-    Array *hash;
-    printf("huehue");
-    Pizzalist *list=pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
-    Queuepizza *queue= queuepizza_init(sizeof(int),NULL);//lo mismo
-    char cliente[2048];
-    char pizza[2048];
-    char command[4];
-    int cantidad;
-    int i;
-    printf("que sucede");
-    hash = array_init(sizeof(Pizzalist),pizzalist_destroy);
-    printf("hermanito");
-    while (1)
-    {
-        scanf("%s", command);
+      if (!strcmp(command,"ASK"))/* Es lo mismo que strcmp(command,"NEW") == 0 */
+      /* strcmp resta strings, si son iguales, la resta da 0 (TRUE) */
+      {
 
-        if (!strcmp(command,"ASK"))/* Es lo mismo que strcmp(command,"NEW") == 0 */
-        /* strcmp resta strings, si son iguales, la resta da 0 (TRUE) */
+        scanf("%s", cliente);
+        scanf("%d", &cantidad);
+        scanf("%s", pizza);
+        for(i=0;i<cantidad;i++)
         {
-
-          scanf("%s", cliente);
-          scanf("%d", &cantidad);
-          scanf("%s", pizza);
-          for(i=0;i<cantidad;i++)
+          array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
+          if(!(pizzalist_find(list,queue,&(pizza[0]))))
           {
-            array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
-            if(!(pizzalist_find(list,queue,&(pizza[0]))))
-            {
-              queue=queuepizza_init(sizeof(int),NULL);
-              pizzalist_addlast(list,queue,&(pizza[0]));
-            }
-            queuepizza_enqueue(queue,0,&(cliente[0]));
+            queue=queuepizza_init(sizeof(int),NULL);
+            pizzalist_addlast(list,queue,&(pizza[0]));
           }
-
-
-        //Persona* person = malloc(sizeof(Persona));
-        //person->name = malloc(sizeof(char)*(strlen(name)));
-        //erson->gravity = gravity;
-        //add(person);
-      }
-        else if(!strcmp(command,"RDY"))
-        {
-
-        }
-        else if(!strcmp(command,"END"))
-        {
-          //scanf("%s", name);
-          //scanf("%d", &gravity);
+          queuepizza_enqueue(queue,0,&(cliente[0]));
         }
 
-        else
-        {
-          break;
-          exit(1);
-        }
+
+      //Persona* person = malloc(sizeof(Persona));
+      //person->name = malloc(sizeof(char)*(strlen(name)));
+      //erson->gravity = gravity;
+      //add(person);
     }
+      else if(!strcmp(command,"RDY"))
+      {
 
+      }
+      else if(!strcmp(command,"END"))
+      {
+        //scanf("%s", name);
+        //scanf("%d", &gravity);
+      }
+
+      else
+      {
+        break;
+        exit(1);
+      }
   }
+
+}
+int main(int argc, char const *argv[]) {
+  printf("ya pue");
   readCommand();
   return 0;
 }

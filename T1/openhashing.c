@@ -69,7 +69,7 @@ static void array_copy_item(Array *array, int sourceIndex, int destIndex)
 Array *array_init(int elementsize, freeFunction function)
 {
 	assert(elementsize > 0);
-  Array *array = calloc(sizeof(*array));
+  Array *array = calloc(1,sizeof(*array));
   array_alloc_test(array);
 	array->elementsize = elementsize;
 	array->size = 0;

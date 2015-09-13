@@ -1,4 +1,5 @@
 #include "pizzalist.h"
+#include "queuepizza.h"
 
 /* ---------------- Memory manipulation for data structure ---------------- */
 

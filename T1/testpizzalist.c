@@ -7,7 +7,6 @@
 
 void readCommand() {
   Array *hash;
-  printf("huehue");
   Pizzalist *list = NULL; //acá se pierde memoria
   Queuepizza *queue = NULL;//lo mismo
   char cliente[2048];
@@ -15,9 +14,7 @@ void readCommand() {
   char command[4];
   int cantidad;
   int i;
-  printf("que sucede");
   hash = array_init(sizeof(Pizzalist),pizzalist_destroy);
-  printf("hermanito");
   while (1)
   {
       scanf("%s", command);

@@ -60,7 +60,7 @@ void pizzalist_destroy(void *pizzalist)
 
 /* ---------------- Manipulation of the data structure ---------------- */
 
-void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *key)
+void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
 {
     pizzalist_alloc_test(list);
 
@@ -73,7 +73,7 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *key)
         exit(EXIT_FAILURE);
     }
     memcpy(element->value, ValueToAdd, list->elementsize);
-    memcpy(element->key, key, sizeof(char));
+    memcpy(element->key, ki, sizeof(char *));
 
 
     // the next element is null because we add at the end of the list.

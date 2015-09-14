@@ -5,6 +5,8 @@
 #include "openhashing.h"
 #include "hash.h"
 #include "pizzalist.h"
+#include "queuepizza.h"
+
 
 void array_alloc_test(Array *array){
     // Test if the array is allocated in memory, if not returns with error
@@ -13,10 +15,12 @@ void array_alloc_test(Array *array){
         exit(EXIT_FAILURE);
     }
 }
-unsigned long closed_addressing_hashing(Array *array, unsigned char *target)
+
+int opensimple_addressing_hashing(Array *array, char *target)
 {
-  return hash(target % array->maxsize);
+  return (int)(hash((unsigned char *)target) % array->maxsize);
 }
+
 static void array_grow(Array *array) //me falta hacer el hash de nuevo.
 {
   array_alloc_test(array);
@@ -31,7 +35,7 @@ static void array_grow(Array *array) //me falta hacer el hash de nuevo.
 
   for(i = 0; i < array->oldsize; i++) {
     addtemp=(char *)oldelements + array->elementsize * i;
-    if (addtemp != NULL)
+    if ((int *)addtemp != 0)
     {
       source = (char *)oldelements + array->elementsize * i
       target = array_address(array, i); //hash
@@ -116,12 +120,21 @@ void array_add(Array *array, void *element)
 	memcpy(target, element, array->elementsize);
 }
 
-void array_item_at(Array *array, int index, void *target)
+void array_item_at(Array *array, int index, Pizzalist **target)
 {
   array_alloc_test(array);
-	assert(index >= 0 && index < array->size);
+	assert(index >= 0 && index < array->maxsize);
 	void *source = array_address(array, index);
-	memcpy(target, source, array->elementsize);
+  void *holi = source;
+  //*target =*source;
+  //&target = 1;
+  *target=source;
+  //(Pizzalist *)target=(Pizzalist *)source;
+  //printf("%d \n",source);
+  //printf("%d \n",holi);
+
+  //printf("%d",target);
+	//memcpy(target, source, array->elementsize);
 }
 
 void array_insert_at(Array *array, int index, void *target)
@@ -170,7 +183,7 @@ void array_add_at(Array *array, void *element,int index)
     array_grow(array);
   }
   assert(index >= 0 && index < array->maxsize);
-  void *posicion = array_address(array,index);
+  void *posicion = array_address(array,index); //hash
   memcpy(posicion, element, array->elementsize);
   array->size++;
 }

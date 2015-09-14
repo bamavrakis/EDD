@@ -37,6 +37,7 @@ void readCommand() {
             queue=queuepizza_init(sizeof(int),NULL);
             pizzalist_addlast(list,queue,&(pizza[0]));
             printf("LO LOGRE");
+            printf("%d",list->size);
           }
           queuepizza_enqueue(queue,&add,&(cliente[0]));
         }

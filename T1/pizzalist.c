@@ -78,6 +78,10 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
     }
     memcpy(element->value, ValueToAdd, list->elementsize);
     memcpy(element->key, ki,sizeof(char *));
+    //printf("paseporaca");
+
+    //element->value=ValueToAdd;
+
     //printf("%s",(element->key));
 
 
@@ -153,6 +157,7 @@ int pizzalist_delbeg(Pizzalist *list,void *puntero, bool delete)
     }
     Pizzanodo *element=list->first;
     memcpy(puntero, element->key, sizeof(char *));
+
     if(delete)
     {
       if (list->size ==1)
@@ -248,8 +253,9 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key)
     }
     if (!strcmp(temp->key,key))
     {
-      //printf("no, por acá");
       puntero = temp->value;
+      //printf("%d\n",puntero);
+
       return 1;
     }
 
@@ -260,6 +266,8 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key)
        {
          //printf("scooby");
          puntero = temp->value;
+         //printf("%d \n",puntero);
+
          return 1;
        }
        temp = temp->next;

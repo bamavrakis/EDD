@@ -99,7 +99,7 @@ void array_add(Array *array, void *element)
 	}
 
 	void *target = array_address(array, array->size++);
-	memcpy(target, element, array->elementsize);
+  memcpy(target, element, array->elementsize);
 }
 
 void array_item_at(Array *array, int index, void *target)
@@ -107,6 +107,7 @@ void array_item_at(Array *array, int index, void *target)
   array_alloc_test(array);
 	assert(index >= 0 && index < array->maxsize);
 	void *source = array_address(array, index);
+  //printf("%d \n",source);
   target=source;
   //printf("%d",target);
 	//memcpy(target, source, array->elementsize);

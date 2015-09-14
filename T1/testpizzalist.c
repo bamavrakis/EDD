@@ -56,7 +56,7 @@ void readCommand() {
           if(pizzalist_find(list,queue,&(pizza[0])))
           {
             queuepizza_dequeue(queue,clienteichon,1);
-            printf("%c",clienteichon);
+            printf("%c",*clienteichon);
           }
 
           free(pizza);

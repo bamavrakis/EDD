@@ -34,7 +34,7 @@ void readCommand() {
             queue=queuepizza_init(sizeof(int),NULL);
             pizzalist_addlast(list,queue,&(pizza[0]));
           }
-          queuepizza_enqueue(queue,0,&(cliente[0]));
+          //queuepizza_enqueue(queue,0,&(cliente[0]));
         }
 
 

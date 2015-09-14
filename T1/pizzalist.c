@@ -74,7 +74,7 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
         exit(EXIT_FAILURE);
     }
     memcpy(element->value, ValueToAdd, list->elementsize);
-    memcpy(element->key, ki,sizeof(char *));
+    memcpy(element->key, ki,sizeof(char ));
 
 
     // the next element is null because we add at the end of the list.
@@ -106,12 +106,13 @@ void pizzalist_addbeg(Pizzalist *list, void *ValueToAdd, char *key)
     // We allocate memory for the new element that will be added.
     Pizzanodo *element = malloc(sizeof(*element));
     element->value=malloc(list->elementsize);
+    element->key=calloc(1,sizeof(char *));
     if (element == NULL || element->value == NULL)
     {
         exit(EXIT_FAILURE);
     }
     memcpy(element->value, ValueToAdd, list->elementsize);
-    memcpy(element->key, key, sizeof(char));
+    memcpy(element->key, key, sizeof(char *));
 
 
 

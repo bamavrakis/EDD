@@ -8,7 +8,8 @@
 void readCommand() {
   Array *hash;
   Pizzalist list;
-  list = *pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
+  list = *pizzalist_init(sizeof(Queuepizza),queuepizza_destroy);
+  Pizzalist *punter=&list;//acá se pierde memoria
   Queuepizza queue = *queuepizza_init(sizeof(int),NULL);//lo mismo
   char *clienteichon=malloc(sizeof(char )*2048);
   char *cliente;
@@ -30,7 +31,7 @@ void readCommand() {
         scanf("%s", cliente);
         scanf("%d", cantidad);
         scanf("%s", pizza);
-        array_item_at(hash,closed_addressing_hashing(hash, pizza),&list);
+        array_item_at(hash,closed_addressing_hashing(hash, pizza),&punter);
         for(i=0;i<*cantidad;i++)
         {
           if(!(pizzalist_find(&list,&queue,pizza)))
@@ -45,7 +46,7 @@ void readCommand() {
       else if(!strcmp(command,"RDY"))
       {
           scanf("%s", redi);
-          array_item_at(hash, closed_addressing_hashing(hash, redi),&list);
+          array_item_at(hash, closed_addressing_hashing(hash, redi),&punter);
 
           if(pizzalist_find(&list,&queue,redi))
           {

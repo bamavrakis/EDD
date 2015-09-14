@@ -8,7 +8,7 @@
 #include "queuepizza.h"
 
 
-void array_alloc_test(Array *array){
+void array_alloc_test(Arraysimple *array){
     // Test if the array is allocated in memory, if not returns with error
     if (array == NULL)
     {
@@ -16,12 +16,12 @@ void array_alloc_test(Array *array){
     }
 }
 
-int opensimple_addressing_hashing(Array *array, char *target)
+int opensimple_addressing_hashing(Arraysimple *array, char *target)
 {
   return (int)(hash((unsigned char *)target) % array->maxsize);
 }
 
-static void array_grow(Array *array) //me falta hacer el hash de nuevo.
+static void array_grow(Arraysimple *array) //me falta hacer el hash de nuevo.
 {
   array_alloc_test(array);
   int i;
@@ -59,23 +59,23 @@ static void array_grow(Array *array) //me falta hacer el hash de nuevo.
 
 }
 
-static void *array_address(Array *array, int index)
+static void *array_address(Arraysimple *array, int index)
 {
 	int addr = array->elementsize * index;
 	return (char *)array->elements + addr;
 }
 
-static void array_copy_item(Array *array, int sourceIndex, int destIndex)
+static void array_copy_item(Arraysimple *array, int sourceIndex, int destIndex)
 {
 	void *source = array_address(array, sourceIndex);
 	void *target = array_address(array, destIndex);
 	memcpy(target, source, array->elementsize);
 }
 
-Array *array_init(int elementsize, freeFunction function)
+Arraysimple *array_init(int elementsize, freeFunction function)
 {
 	assert(elementsize > 0);
-  Array *array = calloc(1,sizeof(*array));
+  Arraysimple *array = calloc(1,sizeof(*array));
   array_alloc_test(array);
 	array->elementsize = elementsize;
 	array->size = 0;
@@ -88,7 +88,7 @@ Array *array_init(int elementsize, freeFunction function)
   return array;
 }
 
-void array_destroy(Array *array)
+void array_destroy(Arraysimple *array)
 {
   array_alloc_test(array);
 	if(array->freef) {
@@ -103,13 +103,13 @@ void array_destroy(Array *array)
   free(array);
 }
 
-int array_size(Array *array)
+int array_size(Arraysimple *array)
 {
   array_alloc_test(array);
 	return array->size;
 }
 
-void array_add(Array *array, void *element)
+void array_add(Arraysimple *array, void *element)
 {
   array_alloc_test(array);
 	if (array->maxsize == array->size) {
@@ -120,7 +120,7 @@ void array_add(Array *array, void *element)
 	memcpy(target, element, array->elementsize);
 }
 
-void array_item_at(Array *array, int index, Pizzalist **target)
+void array_item_at(Arraysimple *array, int index, Pizzalist **target)
 {
   array_alloc_test(array);
 	assert(index >= 0 && index < array->maxsize);
@@ -137,7 +137,7 @@ void array_item_at(Array *array, int index, Pizzalist **target)
 	//memcpy(target, source, array->elementsize);
 }
 
-void array_insert_at(Array *array, int index, void *target)
+void array_insert_at(Arraysimple *array, int index, void *target)
 {
   array_alloc_test(array);
 	assert(index >= 0 && index <= array->size);
@@ -159,7 +159,7 @@ void array_insert_at(Array *array, int index, void *target)
 	}
 }
 
-void array_remove_at(Array *array, int index)
+void array_remove_at(Arraysimple *array, int index)
 {
   array_alloc_test(array);
 	assert(index >= 0 && index < array->maxsize);
@@ -176,7 +176,7 @@ void array_remove_at(Array *array, int index)
 	array->size--;
 }
 
-void array_add_at(Array *array, void *element,int index)
+void array_add_at(Arraysimple *array, void *element,int index)
 {
   array_alloc_test(array);
   if (array->maxsize == array->size) {

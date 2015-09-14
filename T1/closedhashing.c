@@ -15,9 +15,9 @@ void array_alloc_test(Array *array){
     }
 }
 
-int closed_addressing_hashing(Array *array, unsigned char *target)
+int closed_addressing_hashing(Array *array, char *target)
 {
-  return (int)(hash(target) % array->maxsize);
+  return (int)(hash((unsigned char *)target) % array->maxsize);
 }
 
 static void array_grow(Array *array)
@@ -50,7 +50,7 @@ Array *array_init(int elementsais, freeFunction function)
 	array->elementsize = elementsais;
 	array->size = 0;
 	array->maxsize = 100;
-	array->elements = calloc(array->maxsize,elementsais);
+	array->elements = calloc(array->maxsize,array->elementsize);
 	array->freef = function;
   llenar(array);
 	//array_grow(array);
@@ -102,13 +102,19 @@ void array_add(Array *array, void *element)
   memcpy(target, element, array->elementsize);
 }
 
-void array_item_at(Array *array, int index, void *target)
+void array_item_at(Array *array, int index, Pizzalist **target)
 {
   array_alloc_test(array);
 	assert(index >= 0 && index < array->maxsize);
 	void *source = array_address(array, index);
+  void *holi = source;
+  //*target =*source;
+  //&target = 1;
+  *target=source;
+  //(Pizzalist *)target=(Pizzalist *)source;
   //printf("%d \n",source);
-  target=source;
+  //printf("%d \n",holi);
+
   //printf("%d",target);
 	//memcpy(target, source, array->elementsize);
 }

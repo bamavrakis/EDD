@@ -1,6 +1,7 @@
 #include "pizzalist.h"
 #include <stdbool.h>
 #include <string.h>
+#include "queuepizza.h"
 /* ---------------- Memory manipulation for data structure ---------------- */
 
 void pizzalist_alloc_test(Pizzalist *list){
@@ -15,7 +16,7 @@ Pizzalist *pizzalist_init(int elementsize,freeFunction function)
 {
     // Allocation of the different pointers.
 
-    Pizzalist *list = calloc(1,sizeof(*list));
+    Pizzalist *list = malloc(sizeof(*list));
     list->freef = function;
 
     if (list == NULL)
@@ -67,18 +68,23 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
 
     // We allocate memory for the new element that will be added.
     //list->size++;
-    Pizzanodo *element = calloc(1,sizeof(*element));
-    element->value=calloc(1,list->elementsize);
-    element->key=calloc(1,sizeof(char *));
+    //printf("%s\n",ki);
+
+    Pizzanodo *element = malloc(sizeof(*element));
+    element->value=malloc(list->elementsize);
+    element->key=malloc(2048*sizeof(char));
     //printf("%s",ki);
     if (element == NULL || element->value == NULL)
     {
 
         exit(EXIT_FAILURE);
     }
-    memcpy(element->value, ValueToAdd, list->elementsize);
-    memcpy(element->key, ki,sizeof(char *));
-    //printf("paseporaca");
+    *((Queuepizza *)(element->value))=*((Queuepizza *) ValueToAdd);
+    strcpy(element->key,ki);
+    //element->key=ki;
+    //memcpy(element->value, ValueToAdd, list->elementsize);
+    //memcpy(element->key, ki,sizeof(char )*2048);
+    //printf("%s\n",element->key);
 
     //element->value=ValueToAdd;
 
@@ -104,6 +110,7 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
     }
     list->size++;
     list->last = element;
+    //printf("%d\n",list->size);
 
 
 }
@@ -115,13 +122,13 @@ void pizzalist_addbeg(Pizzalist *list, void *ValueToAdd, char *key)
     // We allocate memory for the new element that will be added.
     Pizzanodo *element = malloc(sizeof(*element));
     element->value=malloc(list->elementsize);
-    element->key=calloc(1,sizeof(char *));
+    element->key=malloc(sizeof(char *));
     if (element == NULL || element->value == NULL)
     {
         exit(EXIT_FAILURE);
     }
-    memcpy(element->value, ValueToAdd, list->elementsize);
-    memcpy(element->key, key, sizeof(char *));
+    //memcpy(element->value, ValueToAdd, list->elementsize);
+    //memcpy(element->key, key, sizeof(char *));
 
 
 
@@ -156,7 +163,8 @@ int pizzalist_delbeg(Pizzalist *list,void *puntero, bool delete)
 
     }
     Pizzanodo *element=list->first;
-    memcpy(puntero, element->key, sizeof(char *));
+    strcpy(puntero,element->key);
+    //memcpy(puntero, element->key, sizeof(char *));
 
     if(delete)
     {
@@ -229,8 +237,8 @@ void pizzalist_print(Pizzalist *list)
         element = list->first;
         while (element != NULL)
         {
-            int *caca=(int *)element->value;
-            printf("%d", *caca);
+            //int *caca=(int *)element->value;
+            //printf("%d", *caca);
             element = element->next;
             if (element != NULL)
             {
@@ -245,27 +253,33 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key)
 {
     //printf("%d \n",list->size);
     pizzalist_alloc_test(list);
-    Pizzanodo *temp = list->first;
-    if (list->size==0)
-    {
-      //printf("HUEEEEE");
-      return 0;
-    }
-    if (!strcmp(temp->key,key))
-    {
-      puntero = temp->value;
+    Pizzanodo *temp=list->first;
+
+    //Pizzanodo *temp = list->first;
+    //printf("%s",key);
+    //if (list->size==0)
+    //{
+    //  printf("HUEEEEE");
+
+    //  return 0;
+    //}
+    //if (!strcmp(temp->key,key))
+    //{
+    //  printf("ejale");
+    //  *((Queuepizza *) puntero) = *((Queuepizza *)(temp->value));
       //printf("%d\n",puntero);
 
-      return 1;
-    }
+//      return 1;
+  // }
 
-    while(temp->next!=NULL)
+    while(temp!=NULL)
     {
        //printf("por aca");
        if (!strcmp(temp->key,key))
        {
          //printf("scooby");
-         puntero = temp->value;
+         *((Queuepizza *) puntero) = *((Queuepizza *)(temp->value));
+
          //printf("%d \n",puntero);
 
          return 1;

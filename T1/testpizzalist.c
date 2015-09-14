@@ -50,7 +50,6 @@ void readCommand() {
           pizza=malloc(sizeof(char)*2048);
           scanf("%s", pizza);
           array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
-          *char clienteichon=calloc(1,sizeof(char *));
           if(pizzalist_find(list,queue,&(pizza[0])))
           {
             queuepizza_dequeue(queue,clienteichon,1);

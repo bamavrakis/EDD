@@ -38,6 +38,11 @@ void queuepizza_enqueue(Queuepizza *queue, void *ValueToAdd, char *cliente)
 void queuepizza_dequeue(Queuepizza *queue, void *puntero, bool delete)
 {
   queuepizza_alloc_test(queue);
+  if(queue->list->size==0)
+  {
+    queuepizza_destroy(queue);
+    return;
+  }
   pizzalist_delbeg(queue->list,puntero,delete);
 
 

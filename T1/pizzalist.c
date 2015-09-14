@@ -159,6 +159,7 @@ int pizzalist_delbeg(Pizzalist *list,void *puntero, bool delete)
     pizzalist_alloc_test(list);
     if (list->size == 0)
     {
+      //pizzalist_destroy(list);
       return -1;
 
     }

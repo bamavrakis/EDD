@@ -32,7 +32,7 @@ void readCommand() {
         for(i=0;i<cantidad;i++)
         {
           printf("%d",(int)closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])));
-          array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
+          array_item_at(hash, (int)closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
           if(!(pizzalist_find(list,queue,(char *)&(pizza[0]))))
           {
             queue=queuepizza_init(sizeof(int),NULL);

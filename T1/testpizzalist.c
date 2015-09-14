@@ -28,21 +28,17 @@ void readCommand() {
         scanf("%s", pizza);
         for(i=0;i<cantidad;i++)
         {
-          printf("NOOOO");
           array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
           if(!(pizzalist_find(list,queue,&(pizza[0]))))
           {
             queue=queuepizza_init(sizeof(int),NULL);
             pizzalist_addlast(list,queue,&(pizza[0]));
           }
-          //queuepizza_enqueue(queue,0,&(cliente[0]));
+          queuepizza_enqueue(queue,0,&(cliente[0]));
         }
 
 
-      //Persona* person = malloc(sizeof(Persona));
-      //person->name = malloc(sizeof(char)*(strlen(name)));
-      //erson->gravity = gravity;
-      //add(person);
+
     }
       else if(!strcmp(command,"RDY"))
       {

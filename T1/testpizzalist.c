@@ -9,7 +9,7 @@ void readCommand() {
   Array *hash;
   Pizzalist *list = pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
   Queuepizza *queue = queuepizza_init(sizeof(int),NULL);//lo mismo
-  *char clienteichon=calloc(1,sizeof(char *));
+  char *clienteichon=calloc(1,sizeof(char *));
   char *cliente;
   char *pizza;
   char command[4];

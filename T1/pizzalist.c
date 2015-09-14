@@ -68,6 +68,7 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
     // We allocate memory for the new element that will be added.
     Pizzanodo *element = calloc(1,sizeof(*element));
     element->value=calloc(1,list->elementsize);
+    element->key=calloc(1,sizeof(char *));
     if (element == NULL || element->value == NULL)
     {
         exit(EXIT_FAILURE);

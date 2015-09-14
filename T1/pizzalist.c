@@ -66,8 +66,6 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
 
 
     // We allocate memory for the new element that will be added.
-    char * copia=calloc(1,sizeof(char *));
-    memcpy(copia,ki,sizeof(char *));
     Pizzanodo *element = calloc(1,sizeof(*element));
     element->value=calloc(1,list->elementsize);
     element->key=calloc(1,sizeof(char *));
@@ -76,7 +74,7 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
         exit(EXIT_FAILURE);
     }
     memcpy(element->value, ValueToAdd, list->elementsize);
-    memcpy(element->key, copia,sizeof(char *));
+    memcpy(element->key, ki,sizeof(char *));
     printf("%s",(element->key));
 
 

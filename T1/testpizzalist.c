@@ -23,8 +23,8 @@ void readCommand() {
       if (!strcmp(command,"ASK"))/* Es lo mismo que strcmp(command,"NEW") == 0 */
       /* strcmp resta strings, si son iguales, la resta da 0 (TRUE) */
       {
-        cliente=malloc(sizeof(char)*2048);
-        pizza=malloc(sizeof(char)*2048);
+        cliente=calloc(sizeof(char)*2048);
+        pizza=calloc(sizeof(char)*2048);
         int add = 0;
         scanf("%s", cliente);
         scanf("%d", &cantidad);
@@ -37,7 +37,7 @@ void readCommand() {
           {
             queue=queuepizza_init(sizeof(int),NULL);
             pizzalist_addlast(list,queue,(char *)&(pizza[0]));
-            printf("LOLOGRE ");
+            //printf("LOLOGRE ");
 
           }
           //(pizzalist_find(list,queue,(char *)&(pizza[0])))

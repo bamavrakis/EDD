@@ -59,7 +59,6 @@ void readCommand() {
 
 }
 int main(int argc, char const *argv[]) {
-  printf("ya pue");
   readCommand();
   return 0;
 }

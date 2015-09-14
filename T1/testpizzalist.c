@@ -9,6 +9,7 @@ void readCommand() {
   Array *hash;
   Pizzalist *list = pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
   Queuepizza *queue = queuepizza_init(sizeof(int),NULL);//lo mismo
+  *char clienteichon=calloc(1,sizeof(char *));
   char *cliente;
   char *pizza;
   char command[4];
@@ -46,6 +47,17 @@ void readCommand() {
     }
       else if(!strcmp(command,"RDY"))
       {
+          pizza=malloc(sizeof(char)*2048);
+          scanf("%s", pizza);
+          array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
+          *char clienteichon=calloc(1,sizeof(char *));
+          if(pizzalist_find(list,queue,&(pizza[0])))
+          {
+            queuepizza_dequeue(queue,clienteichon,1);
+            printf("%s",clienteichon);
+          }
+
+          free(pizza);
 
       }
       else if(!strcmp(command,"END"))
@@ -59,6 +71,7 @@ void readCommand() {
         break;
         exit(1);
       }
+      free(clienteichon);
   }
 
 }

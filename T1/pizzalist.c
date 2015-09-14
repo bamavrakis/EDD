@@ -147,7 +147,7 @@ int pizzalist_delbeg(Pizzalist *list,void *puntero, bool delete)
 
     }
     Pizzanodo *element=list->first;
-    memcpy(puntero, element->value, list->elementsize);
+    memcpy(puntero, element->key, sizeof(char *));
     if(delete)
     {
       if (list->size ==1)

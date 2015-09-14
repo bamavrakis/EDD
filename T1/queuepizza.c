@@ -38,6 +38,8 @@ void queuepizza_dequeue(Queuepizza *queue, void *puntero, bool delete)
 {
   queuepizza_alloc_test(queue);
   pizzalist_delbeg(queue->list,puntero,delete);
+
+
 }
 bool queuepizza_is_empty(Queuepizza *queue)
 {

@@ -75,7 +75,7 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
     }
     memcpy(element->value, ValueToAdd, list->elementsize);
     memcpy(element->key, ki,sizeof(char *));
-    printf("%c",*(element->key));
+    printf("%s",*(element->key));
 
 
     // the next element is null because we add at the end of the list.

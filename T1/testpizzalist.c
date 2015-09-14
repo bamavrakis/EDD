@@ -31,13 +31,14 @@ void readCommand() {
         scanf("%s", pizza);
         for(i=0;i<cantidad;i++)
         {
+          printf("%d",closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])));
           array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
           if(!(pizzalist_find(list,queue,(char *)&(pizza[0]))))
           {
             queue=queuepizza_init(sizeof(int),NULL);
             pizzalist_addlast(list,queue,&(pizza[0]));
             printf("LO LOGRE");
-            printf("%d",list->size);
+
           }
           queuepizza_enqueue(queue,&add,&(cliente[0]));
         }

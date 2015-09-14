@@ -29,9 +29,7 @@ void readCommand() {
         scanf("%s", cliente);
         scanf("%d", &cantidad);
         scanf("%s", pizza);
-        printf("%s",cliente);
-        printf("%d",cantidad);
-        printf("%s",pizza);
+
         for(i=0;i<cantidad;i++)
         {
           //printf("%d",(int)closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])));
@@ -46,8 +44,8 @@ void readCommand() {
           //(pizzalist_find(list,queue,(char *)&(pizza[0])))
           queuepizza_enqueue(queue,&add,&(cliente[0]));
         }
-        free(cliente);
-        free(pizza);
+        //free(cliente);
+        //free(pizza);
 
 
 

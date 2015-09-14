@@ -238,7 +238,7 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key)
     Pizzanodo *temp = list->first;
     if (list->size==0)
     {
-      return 0;
+      return 1;
     }
     while(temp->next!=NULL)
     {
@@ -246,10 +246,10 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key)
        if (strcmp(temp->key,key))
        {
          puntero = temp->value;
-         return 1;
+         return 0;
        }
        temp = temp->next;
 
     }
-    return 0;
+    return 1;
 }

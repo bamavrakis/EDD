@@ -38,7 +38,7 @@ typedef struct Queuepizza
 // Memory management part of the implementation
 Queuepizza *queuepizza_init(int elementsize,freeFunction function);
 void queuepizza_alloc_test(Queuepizza *queue);
-void queuepizza_destroy(void queue);
+void queuepizza_destroy(void *queue);
 
 // Implementation of the basic operations
 void queuepizza_enqueue(Queuepizza *queue, void *ValueToAdd, char* cliente);

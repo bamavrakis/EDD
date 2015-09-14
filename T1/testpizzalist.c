@@ -36,6 +36,7 @@ void readCommand() {
           array_item_at(hash, (int)closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
           if(!(pizzalist_find(list,queue,(char *)&(pizza[0]))))
           {
+            printf("%d",(char *)&(pizza[0]));
             queue=queuepizza_init(sizeof(int),NULL);
             pizzalist_addlast(list,queue,(char *)&(pizza[0]));
             printf("LOLOGRE ");
@@ -44,8 +45,8 @@ void readCommand() {
           //(pizzalist_find(list,queue,(char *)&(pizza[0])))
           queuepizza_enqueue(queue,&add,&(cliente[0]));
         }
-        //free(cliente);
-        //free(pizza);
+        free(cliente);
+        free(pizza);
 
 
 

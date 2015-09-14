@@ -7,11 +7,16 @@
 
 void readCommand() {
   Array *hash;
-  Pizzalist *list = pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
+  Pizzalist *list;
+  list = pizzalist_init(sizeof(Queuepizza),queuepizza_destroy); //acá se pierde memoria
+  //printf("%d",list);
   Queuepizza *queue = queuepizza_init(sizeof(int),NULL);//lo mismo
-  char *clienteichon=calloc(1,sizeof(char *));
+  char *clienteichon=calloc(2048,sizeof(char));
   char *cliente;
   char *pizza;
+  cliente=calloc(1,sizeof(char)*2048);
+  pizza=calloc(1,sizeof(char)*2048);
+
   char command[4];
   int cantidad;
   int i;
@@ -23,8 +28,6 @@ void readCommand() {
       if (!strcmp(command,"ASK"))/* Es lo mismo que strcmp(command,"NEW") == 0 */
       /* strcmp resta strings, si son iguales, la resta da 0 (TRUE) */
       {
-        cliente=calloc(1,sizeof(char)*2048);
-        pizza=calloc(1,sizeof(char)*2048);
         int add = 0;
         scanf("%s", cliente);
         scanf("%d", &cantidad);
@@ -32,37 +35,35 @@ void readCommand() {
 
         for(i=0;i<cantidad;i++)
         {
-          //printf("%d",(int)closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])));
-          array_item_at(hash, (int)closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
+          printf("%d",closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])));
+          array_item_at(hash,closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
           if(!(pizzalist_find(list,queue,(char *)&(pizza[0]))))
           {
-
+            //printf("%s",&(pizza[0]));
             queue=queuepizza_init(sizeof(int),NULL);
             pizzalist_addlast(list,queue,(char *)&(pizza[0]));
-            printf("LOLOGRE ");
+
 
           }
           //(pizzalist_find(list,queue,(char *)&(pizza[0])))
           queuepizza_enqueue(queue,&add,&(cliente[0]));
         }
-        free(cliente);
-        free(pizza);
 
 
 
     }
       else if(!strcmp(command,"RDY"))
       {
-          pizza=malloc(sizeof(char)*2048);
+          //pizza=calloc(1,sizeof(char)*2048);
           scanf("%s", pizza);
           array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
           if(pizzalist_find(list,queue,&(pizza[0])))
           {
             queuepizza_dequeue(queue,clienteichon,1);
-            //printf("%s",*clienteichon);
+            printf("%s",clienteichon);
           }
 
-          free(pizza);
+          //free(pizza);
 
       }
       else if(!strcmp(command,"END"))
@@ -76,8 +77,13 @@ void readCommand() {
         break;
         exit(1);
       }
-      free(clienteichon);
+
   }
+  free(cliente);
+  free(pizza);
+
+  free(clienteichon);
+
 
 }
 int main(int argc, char const *argv[]) {

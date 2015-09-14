@@ -30,6 +30,7 @@ void queuepizza_destroy(void *queuepizza)
 
 void queuepizza_enqueue(Queuepizza *queue, void *ValueToAdd, char *cliente)
 {
+  //printf("%s \n",cliente);
   queuepizza_alloc_test(queue);
   pizzalist_addlast(queue->list,ValueToAdd,cliente);
 }

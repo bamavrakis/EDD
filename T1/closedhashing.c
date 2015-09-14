@@ -15,9 +15,9 @@ void array_alloc_test(Array *array){
     }
 }
 
-unsigned long closed_addressing_hashing(Array *array, unsigned char *target)
+int closed_addressing_hashing(Array *array, unsigned char *target)
 {
-  return (hash(target) % array->maxsize);
+  return (int)(hash(target) % array->maxsize);
 }
 
 static void array_grow(Array *array)
@@ -107,7 +107,9 @@ void array_item_at(Array *array, int index, void *target)
   array_alloc_test(array);
 	assert(index >= 0 && index < array->maxsize);
 	void *source = array_address(array, index);
-	memcpy(target, source, array->elementsize);
+  target=source;
+  //printf("%d",target);
+	//memcpy(target, source, array->elementsize);
 }
 
 void array_insert_at(Array *array, int index, void *target) //si está lleno falla
@@ -153,6 +155,7 @@ void array_add_at(Array *array, void *element,int index)
 {
   array_alloc_test(array);
   if (array->maxsize == array->size) {
+
     exit(1);
     return;
     //array_grow(array);

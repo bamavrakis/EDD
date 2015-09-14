@@ -66,13 +66,14 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
 
 
     // We allocate memory for the new element that will be added.
-
+    //list->size++;
     Pizzanodo *element = calloc(1,sizeof(*element));
     element->value=calloc(1,list->elementsize);
     element->key=calloc(1,sizeof(char *));
-    printf("%d",element->key);
+    //printf("%s",ki);
     if (element == NULL || element->value == NULL)
     {
+
         exit(EXIT_FAILURE);
     }
     memcpy(element->value, ValueToAdd, list->elementsize);
@@ -97,9 +98,10 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
     {
         list->last->next = element;
     }
-
-    list->last = element;
     list->size++;
+    list->last = element;
+
+
 }
 
 void pizzalist_addbeg(Pizzalist *list, void *ValueToAdd, char *key)
@@ -236,7 +238,7 @@ void pizzalist_print(Pizzalist *list)
 
 int pizzalist_find(Pizzalist *list, void *puntero, char *key)
 {
-
+    //printf("%d \n",list->size);
     pizzalist_alloc_test(list);
     Pizzanodo *temp = list->first;
     if (list->size==0)
@@ -244,11 +246,19 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key)
       //printf("HUEEEEE");
       return 0;
     }
+    if (!strcmp(temp->key,key))
+    {
+      //printf("no, por acá");
+      puntero = temp->value;
+      return 1;
+    }
+
     while(temp->next!=NULL)
     {
-
+       //printf("por aca");
        if (!strcmp(temp->key,key))
        {
+         //printf("scooby");
          puntero = temp->value;
          return 1;
        }

@@ -15,7 +15,7 @@ Pizzalist *pizzalist_init(int elementsize,freeFunction function)
 {
     // Allocation of the different pointers.
 
-    Pizzalist *list = calloc(sizeof(*list));
+    Pizzalist *list = calloc(1,sizeof(*list));
     list->freef = function;
 
     if (list == NULL)

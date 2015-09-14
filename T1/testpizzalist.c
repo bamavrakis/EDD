@@ -40,6 +40,7 @@ void readCommand() {
             printf("LOLOGRE ");
 
           }
+          //(pizzalist_find(list,queue,(char *)&(pizza[0])))
           queuepizza_enqueue(queue,&add,&(cliente[0]));
         }
         free(cliente);

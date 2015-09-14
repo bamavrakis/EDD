@@ -13,7 +13,7 @@ void queuepizza_alloc_test(Queuepizza *queue){
 
 Queuepizza *queuepizza_init(int elementsize,freeFunction function)
 {
-  Queuepizza *queue = malloc(sizeof(*queue));
+  Queuepizza *queue = calloc(sizeof(*queue));
   queuepizza_alloc_test(queue);
   queue->list = pizzalist_init(elementsize,function);
   return queue;

@@ -31,7 +31,7 @@ void readCommand() {
         scanf("%s", pizza);
         for(i=0;i<cantidad;i++)
         {
-          printf("%d",closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])));
+          printf("%d",(int)closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])));
           array_item_at(hash, closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])),list);
           if(!(pizzalist_find(list,queue,(char *)&(pizza[0]))))
           {

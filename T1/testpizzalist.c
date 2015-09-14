@@ -22,7 +22,7 @@ void readCommand() {
       if (!strcmp(command,"ASK"))/* Es lo mismo que strcmp(command,"NEW") == 0 */
       /* strcmp resta strings, si son iguales, la resta da 0 (TRUE) */
       {
-
+        int add = 0;
         scanf("%s", cliente);
         scanf("%d", &cantidad);
         scanf("%s", pizza);
@@ -34,7 +34,7 @@ void readCommand() {
             queue=queuepizza_init(sizeof(int),NULL);
             pizzalist_addlast(list,queue,&(pizza[0]));
           }
-          queuepizza_enqueue(queue,0,&(cliente[0]));
+          queuepizza_enqueue(queue,add,&(cliente[0]));
         }
 
 

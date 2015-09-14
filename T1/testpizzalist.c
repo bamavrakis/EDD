@@ -29,9 +29,9 @@ void readCommand() {
         scanf("%s", cliente);
         scanf("%d", &cantidad);
         scanf("%s", pizza);
-        printf("%s",*cliente);
-        printf("%d",*cantidad);
-        printf("%s",*pizza);
+        printf("%s",cliente);
+        printf("%d",cantidad);
+        printf("%s",pizza);
         for(i=0;i<cantidad;i++)
         {
           //printf("%d",(int)closed_addressing_hashing(hash, (unsigned char *)&(pizza[0])));

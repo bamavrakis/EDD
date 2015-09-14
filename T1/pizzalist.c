@@ -238,7 +238,6 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key)
     Pizzanodo *temp = list->first;
     if (list->size==0)
     {
-      printf("hue hue");
       return 0;
     }
     while(temp->next!=NULL)

@@ -83,8 +83,8 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
     // If the list was empty
     if (list->size == 0)
     {
-         Be careful we need to free the first element because it was
-         initiated.
+         //Be careful we need to free the first element because it was
+         //initiated.
 
         list->first = element;
 

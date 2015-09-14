@@ -75,6 +75,7 @@ void pizzalist_addlast(Pizzalist *list, void *ValueToAdd, char *ki)
     }
     memcpy(element->value, ValueToAdd, list->elementsize);
     memcpy(element->key, ki,sizeof(char *));
+    printf("%c",element->key);
 
 
     // the next element is null because we add at the end of the list.
@@ -238,7 +239,7 @@ int pizzalist_find(Pizzalist *list, void *puntero, char *key)
     Pizzanodo *temp = list->first;
     if (list->size==0)
     {
-      printf("HUEEEEE");
+      //printf("HUEEEEE");
       return 0;
     }
     while(temp->next!=NULL)

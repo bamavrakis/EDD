@@ -20,7 +20,6 @@ int array_size(Array *array);
 
 void array_add(Array *array, void *element);
 void array_item_at(Array *array, int index, Pizzalist **target);
-void array_insert_at(Array *array, int index, void *target);
 void array_remove_at(Array *array, int index);
 void array_add_at(Array *array, void *element,int index);
 int closed_addressing_hashing(Array *array, char *target);

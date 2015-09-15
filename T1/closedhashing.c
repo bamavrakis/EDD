@@ -20,14 +20,6 @@ int closed_addressing_hashing(Array *array, char *target)
   return (int)(hash((unsigned char *)target) % array->maxsize);
 }
 
-static void array_grow(Array *array)
-{
-  array_alloc_test(array);
-
-  array->maxsize *= 2;
-  array->elements = realloc(array->elements,array->maxsize*array->elementsize);
-	assert(array->elements);
-}
 
 static void *array_address(Array *array, int index)
 {
@@ -53,7 +45,6 @@ Array *array_init(int elementsais, freeFunction function)
 	array->elements = calloc(array->maxsize,array->elementsize);
 	array->freef = function;
   llenar(array);
-	//array_grow(array);
   return array;
 }
 void llenar(Array *array)
@@ -95,7 +86,7 @@ void array_add(Array *array, void *element)
 	if (array->maxsize == array->size) {
     exit(1);
     return;
-		//array_grow(array);
+
 	}
 
 	void *target = array_address(array, array->size++);
@@ -107,39 +98,9 @@ void array_item_at(Array *array, int index, Pizzalist **target)
   array_alloc_test(array);
 	assert(index >= 0 && index < array->maxsize);
 	void *source = array_address(array, index);
-  void *holi = source;
-  //*target =*source;
-  //&target = 1;
   *target=source;
-  //(Pizzalist *)target=(Pizzalist *)source;
-  //printf("%d \n",source);
-  //printf("%d \n",holi);
-
-  //printf("%d",target);
-	//memcpy(target, source, array->elementsize);
 }
 
-void array_insert_at(Array *array, int index, void *target) //si está lleno falla
-{
-  array_alloc_test(array);
-	assert(index >= 0 && index <= array->size);
-	array_add(array, target);
-
-	if(index < array->size) {
-		int i;
-		void *source;
-		void *destination;
-
-		for(i = array->size - 2; i > index; i--) {
-			source = array_address(array, i);
-			destination = array_address(array, i + 1);
-			memcpy(destination, source, array->elementsize);
-		}
-
-		destination = array_address(array, i);
-		memcpy(destination, target, array->elementsize);
-	}
-}
 
 void array_remove_at(Array *array, int index)
 {
